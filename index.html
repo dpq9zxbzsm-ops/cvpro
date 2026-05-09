@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV PRO - المنصة الاحترافية</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- شريط التنقل -->
+        <nav class="side-nav">
+            <div class="logo">CV <span style="color:#fff">PRO</span></div>
+            <ul>
+                <li class="nav-item active" data-target="home"><i class="fas fa-home"></i> <span>الرئيسية</span></li>
+                <li class="nav-item" data-target="editor"><i class="fas fa-user-edit"></i> <span>البيانات الشخصية</span></li>
+                <li class="nav-item" data-target="experience"><i class="fas fa-briefcase"></i> <span>الخبرة والتعليم</span></li>
+                <li class="nav-item" data-target="preview"><i class="fas fa-file-pdf"></i> <span>المعاينة والتحميل</span></li>
+            </ul>
+        </nav>
+
+        <main class="content-wrapper">
+            
+            <!-- الصفحة 1: الرئيسية -->
+            <section id="home" class="page-section active">
+                <div class="hero-card">
+                    <h1>صانع السير الذاتية الذكي</h1>
+                    <p>صمم سيرة ذاتية احترافية تفتح لك أبواب الفرص الوظيفية في دقائق.</p>
+                    <button class="btn-main" onclick="goToPage('editor')">ابدأ رحلتك الآن</button>
+                </div>
+            </section>
+
+            <!-- الصفحة 2: البيانات الشخصية -->
+            <section id="editor" class="page-section">
+                <div class="card">
+                    <h2><i class="fas fa-id-card"></i> المعلومات الأساسية</h2>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>الصورة الشخصية</label>
+                            <input type="file" id="imgInput" accept="image/*">
+                        </div>
+                        <div class="form-group">
+                            <label>الاسم الكامل</label>
+                            <input type="text" id="nameInp" placeholder="محمد السيف">
+                        </div>
+                        <div class="form-group">
+                            <label>المسمى الوظيفي</label>
+                            <input type="text" id="jobInp" placeholder="مهندس برمجيات">
+                        </div>
+                        <div class="form-group">
+                            <label>البريد الإلكتروني</label>
+                            <input type="email" id="emailInp" placeholder="name@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label>رقم الهاتف</label>
+                            <input type="tel" id="phoneInp" placeholder="05xxxxxxxx">
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-top: 20px;">
+                        <label>نبذة تعريفية</label>
+                        <textarea id="bioInp" rows="4" placeholder="تحدث عن أهم إنجازاتك..."></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <!-- الصفحة 3: الخبرة والمهارات -->
+            <section id="experience" class="page-section">
+                <div class="card">
+                    <h2><i class="fas fa-tools"></i> المهارات والخبرات</h2>
+                    
+                    <div class="form-group">
+                        <label>المهارات (افصل بينها بفاصلة , )</label>
+                        <input type="text" id="skillsInp" placeholder="إدارة المشاريع, البرمجة بـ Python, التصميم">
+                    </div>
+
+                    <div class="form-group">
+                        <label>الخبرة العملية</label>
+                        <textarea id="expInp" rows="5" placeholder="• شركة التقنية - مبرمج (2020-2024)&#10;• مؤسسة الإبداع - متدرب (2018)"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>التعليم</label>
+                        <textarea id="eduInp" rows="4" placeholder="• جامعة الملك سعود - بكالوريوس هندسة"></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <!-- الصفحة 4: المعاينة -->
+            <section id="preview" class="page-section">
+                <div class="action-bar">
+                    <button class="btn-save" id="pdfBtn"><i class="fas fa-cloud-download-alt"></i> حفظ بصيغة PDF</button>
+                </div>
+                
+                <!-- تصميم الورقة -->
+                <div id="cv-paper" class="a4-page">
+                    <div class="cv-sidebar">
+                        <img id="viewImg" src="https://via.placeholder.com/150" class="cv-img">
+                        <div class="side-block">
+                            <h4>تواصل</h4>
+                            <p id="viewEmail">mail@example.com</p>
+                            <p id="viewPhone">05xxxxxxxx</p>
+                        </div>
+                        <div class="side-block">
+                            <h4>المهارات</h4>
+                            <div id="viewSkills" class="skill-pills"></div>
+                        </div>
+                    </div>
+
+                    <div class="cv-main">
+                        <div class="cv-header">
+                            <h1 id="viewName">الاسم الكامل</h1>
+                            <h2 id="viewJob">المسمى الوظيفي</h2>
+                        </div>
+                        
+                        <div class="cv-sec">
+                            <h3><i class="fas fa-user-tie"></i> عني</h3>
+                            <p id="viewBio">اكتب بياناتك لتظهر هنا...</p>
+                        </div>
+
+                        <div class="cv-sec">
+                            <h3><i class="fas fa-history"></i> الخبرة العملية</h3>
+                            <p id="viewExp" style="white-space: pre-line;">تفاصيل الخبرة...</p>
+                        </div>
+
+                        <div class="cv-sec">
+                            <h3><i class="fas fa-university"></i> التعليم</h3>
+                            <p id="viewEdu" style="white-space: pre-line;">تفاصيل التعليم...</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
